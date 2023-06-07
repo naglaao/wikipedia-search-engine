@@ -8,16 +8,22 @@ const validateInput = (el) => {
         generateResults(el.value, el)
     }
 }
-input.addEventListener("keyup",depounce(validateInput));
-function depounce(callback , delay=2000) {
-  let timeOut;
-  return (...args)=> {
-      clearTimeout(timeOut);
-      timeOut = setTimeout(() => {
-      callback(...args);
-    }, delay);
+input.addEventListener("keyup", depounce(validateInput));
+
+function depounce(fn) {
+  let timer;
+  console.log("depounce ext");
+  return function (...args) {
+    if (timer) {
+      console.log("clearing");
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      fn(...args);
+    }, 1000);
   };
 }
+
 
 const generateResults = (searchValue, inputField) => {
     fetch(
