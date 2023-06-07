@@ -1,5 +1,5 @@
 let resultsContainer = document.getElementsByClassName("container")[0];
-let input =document.getElementById("input");
+const input =document.getElementById("input");
 
 const validateInput = (el) => {
     if(el.value === ""){
@@ -8,7 +8,7 @@ const validateInput = (el) => {
         generateResults(el.value, el)
     }
 }
-input.addEventListener("keyup",depounce(validateInput))
+input.addEventListener("keyup",depounce(validateInput));
 function depounce(callback , delay=2000) {
   let timeOut;
   return (...args)=> {
