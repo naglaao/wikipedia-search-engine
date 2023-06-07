@@ -1,4 +1,5 @@
-let resultsContainer = document.getElementsByClassName("container")[0]
+let resultsContainer = document.getElementsByClassName("container")[0];
+let input =document.getElementById("input");
 
 const validateInput = (el) => {
     if(el.value === ""){
@@ -6,6 +7,16 @@ const validateInput = (el) => {
     }else{
         generateResults(el.value, el)
     }
+}
+input.addEventListener("keyup",depounce(validateInput))
+function depounce(callback , delay=2000) {
+  let timeOut;
+  return (...args)=> {
+      clearTimeout(timeOut);
+      timeOut = setTimeout(() => {
+      callback(...args);
+    }, delay);
+  };
 }
 
 const generateResults = (searchValue, inputField) => {
